@@ -13,6 +13,6 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        Game::factory(1)->create();
+        Game::factory(10)->create();
     }
 }
