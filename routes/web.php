@@ -18,5 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)
     ->name('home');
 
-Route::get('/games', [GameController::class, 'index'])
-    ->name('games');
+Route::resource('games', GameController::class);
