@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'Home')
     <div class="bg-white py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">VG Sales</h2>
