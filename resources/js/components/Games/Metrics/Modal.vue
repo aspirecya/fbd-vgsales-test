@@ -4,9 +4,10 @@
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div class="fixed inset-0 z-10 overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-xl sm:p-6">
+                    <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
                         <Bar
                             id="sales-chart"
+                            :options="chartOptions"
                             :data="chartData"
                         />
                         <div class="mt-5 sm:mt-6">
@@ -54,7 +55,7 @@ export default {
                 ],
                 datasets: [
                     {
-                        label: "Number of units sold",
+                        label: "Millions of units sold",
                         data: [
                             this.data.global_sales,
                             this.data.eu_sales,
@@ -63,6 +64,15 @@ export default {
                         ]
                     }
                 ]
+            },
+            chartOptions: {
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: value => `${value} millions`
+                        }
+                    }
+                }
             }
         }
     },
