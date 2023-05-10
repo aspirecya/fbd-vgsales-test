@@ -10,7 +10,13 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        return view('welcome');
+        $totalGames = Game::all()->count();
+        $totalGlobalSales = Game::all()->sum('global_sales');
+        $totalEuSales = Game::all()->sum('eu_sales');
+        $totalNaSales = Game::all()->sum('na_sales');
+        $totalJpSales = Game::all()->sum('jp_sales');
+
+        return view('home', compact(['totalGames', 'totalGlobalSales', 'totalEuSales', 'totalNaSales', 'totalJpSales']));
     }
 
 }

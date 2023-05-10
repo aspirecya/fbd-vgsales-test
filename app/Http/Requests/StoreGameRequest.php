@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreGameRequest extends FormRequest
@@ -11,18 +12,28 @@ class StoreGameRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'name' => 'string|required',
+            'platform' => 'string|required',
+            'release_year' => 'integer|required',
+            'genre' => 'string|required',
+            'publisher' => 'string|required',
+            'rank' => 'integer|required',
+            'na_sales' => 'integer|required',
+            'eu_sales' => 'integer|required',
+            'jp_sales' => 'integer|required',
+            'other_sales' => 'integer|required',
+            'global_sales' => 'integer|required',
         ];
     }
 }

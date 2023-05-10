@@ -30,7 +30,11 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-        //
+        Game::create($request->validated());
+
+        flash()->success('Game has been created.');
+
+        return redirect()->route('games.index');
     }
 
     /**

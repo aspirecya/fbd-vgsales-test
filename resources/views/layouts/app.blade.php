@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>VG Sales</title>
+        <title>@yield('title') - {{ config('app.name') }}</title>
         <meta name="robots" content="noindex">
         @routes
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,8 +23,8 @@
                         </div>
                         <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Home</a>
-                            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Games</a>
+                            <a href="{{ route('home') }}" class="{{ Route::currentRouteName() === 'home' ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Home</a>
+                            <a href="{{ route('games.index') }}" class="{{ Route::currentRouteName() === 'games.index' ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium">Games</a>
                         </div>
                     </div>
                     <div class="-mr-2 flex items-center sm:hidden">
@@ -48,6 +48,8 @@
         <div class="py-10">
             <main>
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8" id="app">
+                    @include('partials.status')
+                    @include('partials.errors')
                     {{ $slot }}
                 </div>
             </main>
